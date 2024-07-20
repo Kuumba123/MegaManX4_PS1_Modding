@@ -21,6 +21,8 @@ GetMiscObject = 0x8002ae50;
 GetVisualObject = 0x8002ad3c;
 GetItemObject = 0x8002adbc;
 GetShotObject = 0x8002aca4;
+GetLayerObject = 0x8002b048;
+GetQuadObject = 0x8002b008;
 
 GetRNG = 0x8002b73c;
 

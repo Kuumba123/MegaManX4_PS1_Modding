@@ -2,8 +2,12 @@ AddPrim = 0x800e986c;
 AddPrims = 0x800e98a8;
 
 CatPrim = 0x800e98e4;
+ClearOTagR = 0x800ea8f0;
+
+DrawOTag = 0x800ea9e8;
 
 DrawSync = 0x800ea3e8;
+
 VSync = 0x800e4f8c;
 
 ClearImage = 0x800ea57c;
@@ -11,6 +15,12 @@ ClearImage2 = 0x800ea610;
 LoadImage = 0x800ea6ac;
 StoreImage = 0x800ea710;
 MoveImage = 0x800ea774;
+
+PutDispEnv = 0x800eacb4;
+PutDrawEnv = 0x800eaa5c;
+
+SetDefDispEnv = 0x800e9600;
+SetDefDrawEnv = 0x800e9530;
 
 SetPolyF4 = 0x800e99c0;
 SetPolyFT4 = 0x800e99d4;

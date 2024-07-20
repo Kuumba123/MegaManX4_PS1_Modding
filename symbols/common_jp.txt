@@ -1,14 +1,22 @@
 buttonsHeld = 0x80166ce8;
 buttonsPressed = 0x80166cec;
+buttonsHeld2 = 0x80166e30;
+buttonsPressed2 = 0x80166e34;
+
 cursor = 0x80141cbf;
 fadeDirection = 0x80141cbc;
+frameCount = 0x80141cb8;
 freeArcP = 0x8015daa8;
 game = 0x80172278;
 
-
-
 ArcSeek = 0x80013b0c;
 BinSeek = 0x800138c4;
+
+CdControl = 0x800e5f6c;
+CdIntToPos = 0x800e6398;
+CdPosToInt = 0x800e649c;
+CdRead = 0x800e8034;
+CdReadSync = 0x800e8114;
 
 ClearAll = 0x8002a824;
 

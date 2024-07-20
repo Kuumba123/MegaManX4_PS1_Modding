@@ -1,10 +1,11 @@
 #ifndef GPU_H
 #define GPU_H
+#include <stdint.h>
 #include <sys/types.h>
 #include <libgte.h>
 #include <libgpu.h>
 #define GetTPageValue(tp,abr,x,y) (tp << 7) + (abr << 5) + x + (y << 4) //Use w/ SetDrawTPage()
-#define GetClutCord(id) (ushort)((id & 0xF) + ((id & 0xF0) << 2) + 0x7800) //Base is X:0 Y:480
+#define GetClutCord(id) (uint16_t)((id & 0xF) + ((id & 0xF0) << 2) + 0x7800) //Base is X:0 Y:480
 
 void AddPrim(void *ot,void *p);
 void AddPrims(void *ot,void *p0,void *p1);
@@ -51,7 +52,7 @@ void SetLineF4(LINE_F4 * p);
 void SetLineG4(LINE_G4 * p);
 void SetDrawTPage(DR_TPAGE *p,int dfe,int dtd,int tpage);
 
-extern u_char buffer;
+extern uint8_t buffer;
 typedef struct{
     DISPENV disp;
     DRAWENV draw;

@@ -187,7 +187,10 @@ def build(plugin_path: str, game_path: str, game_version: str) -> None:
     "LBA_VOICE2_U_XA",
     "LBA_VOICE3_U_XA",
     "LBA_VOICE4_U_XA",
-    "LBA_VOICE5_U_XA"]
+    "LBA_VOICE5_U_XA",
+    "LBA_SYSTEM_CNF",
+    "LBA_SLUS_005_61",
+    "LBA_ZNULL_DAT"]
 
     Const = {"FileDataAddress": 0x800F0E18}
 

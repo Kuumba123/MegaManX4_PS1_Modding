@@ -1,51 +1,50 @@
 #ifndef OBJECT_H
 #define OBJECT_H
-#include <sys/types.h>
+#include <stdint.h>
 #include <stdbool.h>
 typedef unsigned char   undefined;
-typedef unsigned char    byte;
 
 typedef struct
 {
     char offsetX;
     char offsetY;
-    u_char width;
-    u_char height;
-}hitboxS;
+    uint8_t width;
+    uint8_t height;
+}HitBox;
 
 
 typedef struct {
-    byte timer;
-    byte flag;
+    uint8_t timer;
+    uint8_t flag;
     char nextIndex; /* multiples of 4 */
-    byte sprtFrame;
+    uint8_t sprtFrame;
 }AnimeFrame;
 
 typedef struct {
-    byte spawned;
-    byte Id;
-    byte var;
-    byte type;
-    ushort X;
-    ushort Y;
+    uint8_t spawned;
+    uint8_t Id;
+    uint8_t var;
+    uint8_t type;
+    uint16_t X;
+    uint16_t Y;
 }Enemy;
 
 typedef struct {
-    byte flags; /* alive */
-    byte id;
-    byte stageVar;
+    uint8_t flags; /* alive */
+    uint8_t id;
+    uint8_t stageVar;
     bool display;
-    byte act;
-    byte act2;
-    byte act3;
-    byte act4;
+    uint8_t act;
+    uint8_t act2;
+    uint8_t act3;
+    uint8_t act4;
     int x;
     int y;
     Enemy * enemyP; /* for enemy spawner & other things */
-    byte collideLayer; /* witch BG Layer for collision */
-    byte flip;
-    byte priority;
-    byte anime;
+    uint8_t collideLayer; /* witch BG Layer for collision */
+    uint8_t flip;
+    uint8_t priority;
+    uint8_t anime;
     int pastX;
     int pastY;
     int speedX;
@@ -53,13 +52,13 @@ typedef struct {
     int accelX;
     int accelY;
     AnimeFrame * animeTableP;
-    byte * frameP;
-    byte * texP;
-    byte * sprtDataP;
-    ushort texCord;
-    ushort clutCord;
+    uint8_t * frameP;
+    uint8_t * texP;
+    uint8_t * sprtDataP;
+    uint16_t texCord;
+    uint16_t clutCord;
     AnimeFrame animeInfo;
-    byte newAnimeF;
+    uint8_t newAnimeF;
     undefined field29_0x49;
     undefined field30_0x4a;
     undefined field31_0x4b;
@@ -67,25 +66,25 @@ typedef struct {
     undefined field33_0x4d;
     undefined field34_0x4e;
     undefined field35_0x4f;
-    hitboxS * contactP; /* hitbox pointer for ContactO */
-    hitboxS * contactP2; /* with other things that damage it */
+    HitBox * contactP; /* hitbox pointer for ContactO */
+    HitBox * contactP2; /* with other things that damage it */
     int * damageTableP; /* damage table Pointer (when hit) */
-    byte hp;
-    byte hp_old;
+    uint8_t hp;
+    uint8_t hp_old;
     undefined field41_0x5e;
     undefined field42_0x5f;
-    byte damage;
-    byte iframes;
+    uint8_t damage;
+    uint8_t iframes;
     undefined field45_0x62;
     undefined field46_0x63;
     undefined field47_0x64;
     undefined field48_0x65;
     undefined field49_0x66;
     undefined field50_0x67;
-    hitboxS * collideP; /* for collison & hitbox */
-    ushort innerX;
-    ushort innerY;
-    byte collideF; /* flags for BTLR */
+    HitBox * collideP; /* for collison & hitbox */
+    uint16_t innerX;
+    uint16_t innerY;
+    uint8_t collideF; /* flags for BTLR */
     undefined field55_0x71;
     undefined field56_0x72;
     undefined field57_0x73;
@@ -95,7 +94,7 @@ typedef struct {
     undefined field61_0x77;
     undefined field62_0x78;
     undefined field63_0x79;
-    byte hitboxDisableF; /* for Contact Weapon */
+    uint8_t hitboxDisableF; /* for Contact Weapon */
     undefined field65_0x7b;
     undefined field66_0x7c;
     undefined field67_0x7d;
@@ -129,13 +128,13 @@ typedef struct {
 }Object;
 
 typedef struct {
-    byte flags;
+    uint8_t flags;
     undefined field1_0x1;
-    byte player;
+    uint8_t player;
     bool display;
-    byte status;
-    byte state;
-    byte sub;
+    uint8_t status;
+    uint8_t state;
+    uint8_t sub;
     undefined field7_0x7;
     int x;
     int y;
@@ -143,10 +142,10 @@ typedef struct {
     undefined field11_0x11;
     undefined field12_0x12;
     undefined field13_0x13;
-    byte collideLayer;
-    byte flip;
-    byte priority;
-    byte anime;
+    uint8_t collideLayer;
+    uint8_t flip;
+    uint8_t priority;
+    uint8_t anime;
     int pastX;
     int pastY;
     int speedX;
@@ -155,10 +154,10 @@ typedef struct {
     int accelY;
     AnimeFrame * animeTableP;
     AnimeFrame * frameP;
-    byte * megaTexP;
-    byte * sprtDataP;
-    ushort texCord;
-    ushort clutCord;
+    uint8_t * megaTexP;
+    uint8_t * sprtDataP;
+    uint16_t texCord;
+    uint16_t clutCord;
     AnimeFrame animeInfo;
     undefined field31_0x48;
     undefined field32_0x49;
@@ -180,22 +179,22 @@ typedef struct {
     undefined field48_0x59;
     undefined field49_0x5a;
     undefined field50_0x5b;
-    byte hp;
-    byte hpPast;
-    byte maxHP;
+    uint8_t hp;
+    uint8_t hpPast;
+    uint8_t maxHP;
     undefined field54_0x5f;
-    byte damage; /* with Mega */
-    byte iframes; /* well doesnt have to be */
+    uint8_t damage; /* with Mega */
+    uint8_t iframes; /* well doesnt have to be */
     undefined field57_0x62;
     undefined field58_0x63;
     undefined field59_0x64;
     undefined field60_0x65;
     undefined field61_0x66;
     undefined field62_0x67;
-    struct hitboxS * collideP;
-    ushort innerX;
-    ushort innerY;
-    byte collideF;
+    HitBox * collideP;
+    uint16_t innerX;
+    uint16_t innerY;
+    uint8_t collideF;
     undefined field67_0x71;
     undefined field68_0x72;
     undefined field69_0x73;
@@ -207,9 +206,9 @@ typedef struct {
     undefined field75_0x79;
     undefined field76_0x7a;
     undefined field77_0x7b;
-    ushort held;
-    ushort heldPast;
-    ushort pressed;
+    uint16_t held;
+    uint16_t heldPast;
+    uint16_t pressed;
     undefined field81_0x82;
     undefined field82_0x83;
     undefined field83_0x84;
@@ -227,17 +226,17 @@ typedef struct {
     undefined field95_0x90;
     undefined field96_0x91;
     undefined field97_0x92;
-    byte weapon;
-    byte weaponOld;
+    uint8_t weapon;
+    uint8_t weaponOld;
     undefined field100_0x95;
     undefined field101_0x96;
     undefined field102_0x97;
     undefined field103_0x98;
     undefined field104_0x99;
     undefined field105_0x9a;
-    byte glowFlag; /* 1 = Blue , 2 = Pink */
+    uint8_t glowFlag; /* 1 = Blue , 2 = Pink */
     undefined field107_0x9c;
-    byte chargeTimer;
+    uint8_t chargeTimer;
     undefined field109_0x9e;
     undefined field110_0x9f;
     undefined field111_0xa0;
@@ -246,23 +245,23 @@ typedef struct {
     undefined field114_0xa3;
     undefined field115_0xa4;
     undefined field116_0xa5;
-    byte multiShotCount;
-    byte armorParts;
-    byte ammo[16];
-    byte busterType;
-    byte aquiredWeapons;
+    uint8_t multiShotCount;
+    uint8_t armorParts;
+    uint8_t ammo[16];
+    uint8_t busterType;
+    uint8_t aquiredWeapons;
     undefined field122_0xba;
     undefined field123_0xbb;
-    undefined field124_0xbc;
-    undefined field125_0xbd;
+    uint8_t lagTime;
+    bool lagFlag;
     char spawnTimer; /* collison timer */
     undefined field127_0xbf;
     bool lock;
-    byte lockType;
-    byte lockFlip;
+    uint8_t lockType;
+    uint8_t lockFlip;
     undefined field131_0xc3;
     undefined field132_0xc4;
-    byte rideArmorFlag;
+    uint8_t rideArmorFlag;
     undefined field134_0xc6;
     undefined field135_0xc7;
     undefined field136_0xc8;
@@ -298,8 +297,55 @@ typedef struct {
 } Mega;
 
 extern Mega mega;
-#define megaX *(ushort*)((int)&mega.x + 2)
-#define megaY *(ushort*)((int)&mega.y + 2)
+#define megaX *(uint16_t*)((int)&mega.x + 2)
+#define megaY *(uint16_t*)((int)&mega.y + 2)
+
+/*Object Memory Regions*/
+#if BUILD == 561 //North American Version
+
+#define EFFECT_OBJECT_ADDR 0x80142f98
+#define ITEM_OBJECT_ADDR 0x80165a30
+#define LAYER_OBJECT_ADDR 0x80169cb8
+#define ENEMY_OBJECT_ADDR 0x8013bed0
+#define MISC_OBJECT_ADDR 0x80173ca0
+#define QUAD_OBJECT_ADDR 0x801435b0
+#define SHOT_OBJECT_ADDR 0x8013f328
+#define VISUAL_OBJECT_ADDR 0x8013e510
+#define WEAPON_OBJECT_ADDR 0x801406f8
+
+#else //Japanese version
+
+#define EFFECT_OBJECT_ADDR 0x80143078
+#define ITEM_OBJECT_ADDR 0x80165b10
+#define LAYER_OBJECT_ADDR 0x80169d70
+#define ENEMY_OBJECT_ADDR 0x8013bfb0
+#define MISC_OBJECT_ADDR 0x80173d58
+#define QUAD_OBJECT_ADDR 0x80143690
+#define SHOT_OBJECT_ADDR 0x8013f408
+#define VISUAL_OBJECT_ADDR 0x8013e5f0
+#define WEAPON_OBJECT_ADDR 0x801407d8
+
+#endif //////////////
+
+#define EFFECT_OBJECT_SLOTS 0x20
+#define ITEM_OBJECT_SLOTS 0x20
+#define LAYER_OBJECT_SLOTS 0x4
+#define ENEMY_OBJECT_SLOTS 0x30
+#define MISC_OBJECT_SLOTS 0x40
+#define QUAD_OBJECT_SLOTS 0x20
+#define SHOT_OBJECT_SLOTS 0x20
+#define VISUAL_OBJECT_SLOTS 0x20
+#define WEAPON_OBJECT_SLOTS 0x10
+
+#define EFFECT_OBJECT_SLOT_SIZES 0x30
+#define ITEM_OBJECT_SLOT_SIZES 0x8C
+#define LAYER_OBJECT_SLOT_SIZES 0x30
+#define ENEMY_OBJECT_SLOT_SIZES 0x9C
+#define MISC_OBJECT_SLOT_SIZES 0x60
+#define QUAD_OBJECT_SLOTS_SIZES 0x60
+#define SHOT_OBJECT_SLOT_SIZES 0x9C
+#define VISUAL_OBJECT_SLOT_SIZES 0x70
+#define WEAPON_OBJECT_SLOT_SIZES 0x9C
 
 /*Define Functions*/
 void AnimeAdvance(Object *objP);
@@ -314,31 +360,33 @@ void DeleteObject(Object *objP); //clears spawn flag
 void DeleteObject2(Object *objP); //sets spawn flag
 void DeleteObject3(Object *objP);
 void DisplayObject(Object *objP);
-void DisplayObject2(Object *objP, short width, short height);
+void DisplayObject2(Object *objP, int16_t width, int16_t height);
 void DisplayObject3(Object *objP);
 
 Object* GetEffectObject();
 Object* GetItemObject();
+Object* GetLayerObject();
 Object* GetMainObject();
 Object* GetMiscObject();
 int GetRNG();
+Object* GetQuadObject();
 Object* GetShotObject();
 Object* GetVisualObject();
 
-void LockMega(byte lockType, byte flip);
+void LockMega(uint8_t lockType, uint8_t flip);
 
 void MoveObject(Object *objP);
 void MoveObject2(Object *objP);
 
 bool OffScreenCheck(Object* objP);
-bool OffScreenCheck2(Object* objP, short rangeX, short rangeY);
+bool OffScreenCheck2(Object* objP, int16_t rangeX, int16_t rangeY);
 
 bool PlayBossSong(); //returns 0 when started
 
 void SetAnime(Object *objP, int anime);
 void SetAnimeFrame(Object *objP, int anime, int frame);
 void SpawnExplosion(Object *objP);
-void SpawnJunk(byte junkCount, void *idk, Object *objP);
+void SpawnJunk(uint8_t junkCount, void *idk, Object *objP);
 
 void UnlockMega();
 #endif

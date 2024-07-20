@@ -1,12 +1,15 @@
 #ifndef COMMON_H
 #define COMMON_H
-#include <sys/types.h>
+#include <stdint.h>
 #include <stdbool.h>
+#include <libcd.h>
 #include <object.h>
 
 #define WriteShort(addr, value) (*(short*)(addr) = (value))
 #define WriteInt(addr, value) (*(int*)(addr) = (value))
 #define WriteByte(addr, value) (*(char*)(addr) = (value))
+
+typedef unsigned char   undefined;
 
 enum PadButtons{
     PAD_L1 = 4,
@@ -25,18 +28,20 @@ enum PadButtons{
     PAD_SQUARE = 0x80
 };
 
-extern ushort buttonsHeld;
-extern ushort buttonsPressed;
-extern u_char cursor;
+extern uint16_t buttonsHeld;
+extern uint16_t buttonsPressed;
+extern uint16_t buttonsHeld2;
+extern uint16_t buttonsPressed2;
+extern uint8_t cursor;
 extern char fadeDirection; //0 = done
 extern int frameCount;
 extern void * freeArcP;
 
 typedef struct {
-    byte mode;
-    byte mode2;
-    byte mode3;
-    byte mode4;
+    uint8_t mode;
+    uint8_t mode2;
+    uint8_t mode3;
+    uint8_t mode4;
     undefined field4_0x4;
     undefined field5_0x5;
     undefined field6_0x6;
@@ -45,10 +50,10 @@ typedef struct {
     undefined field9_0x9;
     undefined field10_0xa;
     undefined field11_0xb;
-    byte stageid;
-    byte mid;
-    byte movie;
-    byte clear;
+    uint8_t stageid;
+    uint8_t mid;
+    uint8_t movie;
+    uint8_t clear;
     bool rideArmorEnable; /* AI */
     bool disableWepaonObjects;
     bool disableMainObjects;
@@ -63,11 +68,11 @@ typedef struct {
     undefined field27_0x1b;
     undefined field28_0x1c;
     char point;
-    byte specialStart;
+    uint8_t specialStart;
     bool enableBars;
-    struct objStruct * bossP;
+    Object * bossP;
     bool enableBossBar;
-    byte bossBarType;
+    uint8_t bossBarType;
     undefined field35_0x26;
     undefined field36_0x27;
     undefined field37_0x28;
@@ -76,7 +81,7 @@ typedef struct {
     undefined field40_0x2b;
     undefined field41_0x2c;
     undefined field42_0x2d;
-    byte seenTextFlag; /* so that you dont see the boss dialog twice */
+    uint8_t seenTextFlag; /* so that you dont see the boss dialog twice */
     undefined field44_0x2f;
     undefined field45_0x30;
     undefined field46_0x31;
@@ -85,7 +90,7 @@ typedef struct {
     undefined field49_0x34;
     undefined field50_0x35;
     undefined field51_0x36;
-    byte cheatCodeFlag; /* Ultimate Armor/Black Zero */
+    uint8_t cheatCodeFlag; /* Ultimate Armor/Black Zero */
     undefined field53_0x38;
     undefined field54_0x39;
     undefined field55_0x3a;
@@ -94,15 +99,15 @@ typedef struct {
     undefined field58_0x3d;
     undefined field59_0x3e;
     undefined field60_0x3f;
-    byte sceneFlags; /* for X/Zero/Double/Iris */
+    uint8_t sceneFlags; /* for X/Zero/Double/Iris */
     undefined field62_0x41;
     undefined field63_0x42;
     char player;
-    byte lives;
-    byte currentMaxHP;
-    byte maxHP;
-    byte armorParts;
-    byte busterType;
+    uint8_t lives;
+    uint8_t currentMaxHP;
+    uint8_t maxHP;
+    uint8_t armorParts;
+    uint8_t busterType;
     undefined field70_0x49;
     undefined field71_0x4a;
     undefined field72_0x4b;
@@ -119,10 +124,10 @@ typedef struct {
     undefined field83_0x56;
     undefined field84_0x57;
     undefined field85_0x58;
-    byte clearedStages;
-    ushort collectables; /* hearts , tanks , 1UP thing */
-    byte tanksAmmo[3]; /* 2 sub tanks then the w tanks */
-    byte startMode;
+    uint8_t clearedStages;
+    uint16_t collectables; /* hearts , tanks , 1UP thing */
+    uint8_t tanksAmmo[3]; /* 2 sub tanks then the w tanks */
+    uint8_t startMode;
     undefined field90_0x60;
     undefined field91_0x61;
     undefined field92_0x62;
@@ -131,20 +136,27 @@ typedef struct {
 
 extern Game game;
 
-void ArcSeek(ushort id,u_char bufferId,void * bufferP);
-void BinSeek(ushort id,void * dest);
-void ClearAll(void);
+void ArcSeek(uint16_t id,uint8_t bufferId,void * bufferP);
+void BinSeek(uint16_t id,void * dest);
+
+int CdControl(uint8_t com, uint8_t *param, uint8_t *result);
+CdlLOC *CdIntToPos(int i, CdlLOC *p) ;
+int CdPosToInt(CdlLOC *p);
+int CdRead(int sectors, u_long *buf, int mode);
+int CdReadSync(int mode, uint8_t *result);
+
+void ClearAll();
 void DrawLoad(bool showName ,bool fade);
 void DrawMain();
-void DrawMMX4(void);
-void EndSong(void);
+void DrawMMX4();
+void EndSong();
 
-void FadeIn(u_char speed);
-void FadeOut(u_char speed);
+void FadeIn(uint8_t speed);
+void FadeOut(uint8_t speed);
 void FileCollect();
 
-void PlaySound(int slot,int id,Object *objP);
-void PlaySong(byte id,byte vol);
+void PlaySound(int slot,int id,void *objP);
+void PlaySong(uint8_t id,uint8_t vol);
 
 char * strcpy(void * dest,void * src);
 void * memcpy(void *dest, void *src,int length);
@@ -152,10 +164,10 @@ void * memset(void *dest, char *fillbyte,int length);
 
 int printf(const char *fmt,...);
 
-void SpawnText(ushort id,byte idk,byte flag);
+void SpawnText(uint16_t id,uint8_t idk,uint8_t flag);
 
 void NewThread(int id,void * func);
-void ThreadSleep(ushort frames);
+void ThreadSleep(uint16_t frames);
 void DeleteThread();
 void DeleteThread2(int id);
 void NewThread2(void * func);
